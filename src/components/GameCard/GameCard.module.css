@@ -1,0 +1,32 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    cursor: pointer;
+}
+
+.imgLink {
+    height: 374px;
+    width: 280px;
+    background: dimgray;
+}
+
+.cover {
+    height: 374px;
+    width: 280px;
+    object-fit: cover;
+    transition: all .15s ease-in-out;
+}
+
+.cover:hover {
+    opacity: .75;
+}
+
+.card h3 {
+    max-width: 280px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
