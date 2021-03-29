@@ -1,0 +1,30 @@
+.paginator {
+    display: flex;
+    align-items: center;
+    user-select:none;
+    margin: 10px 0;
+}
+.paginator div {
+    display: flex;
+    justify-content: center;
+    border: 1px lightgrey solid;
+    width: 20px;
+    margin: 0 2px;
+    transition: all .1s ease-in-out;
+}
+.paginator div:hover {
+    transform: scale(1.05);
+}
+
+.selectedPage {
+    font-weight: 600;
+    font-size: 1.4em;
+    margin: 0 8px;
+    color: #89c80e;
+    padding: 0 4px;
+}
+.unselectedPage {
+    font-size: 2.15em;
+    margin:0em 1em;
+    transition: color .3s ease-in-out;
+}

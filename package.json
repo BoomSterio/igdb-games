@@ -10,8 +10,9 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
+    "classnames": "^2.2.6",
     "http-proxy-middleware": "^1.0.6",
-    "material-ui-flat-pagination": "^4.1.1",
+    "prettier": "^2.2.1",
     "react": "^17.0.1",
     "react-circular-progressbar": "^2.0.3",
     "react-dom": "^17.0.1",
@@ -48,5 +49,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "arrowParens": "avoid",
+    "proseWrap": "never"
   }
 }

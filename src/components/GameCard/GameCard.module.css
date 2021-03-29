@@ -1,32 +1,36 @@
 .card {
-    display: flex;
-    flex-direction: column;
-    justify-self: center;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  cursor: pointer;
 }
 
 .imgLink {
-    height: 374px;
-    width: 280px;
-    background: dimgray;
+  height: 374px;
+  width: 280px;
+  background: dimgray;
 }
 
-.cover {
-    height: 374px;
-    width: 280px;
-    object-fit: cover;
-    transition: all .15s ease-in-out;
+.cover, .coverAlt {
+  height: 374px;
+  width: 280px;
+  object-fit: cover;
+  transition: all 0.15s ease-in-out;
 }
 
-.cover:hover {
-    opacity: .75;
+.cover:hover, .coverAlt:hover {
+  opacity: 0.75;
+}
+
+.coverAlt {
+  object-fit: contain;
 }
 
 .card h3 {
-    max-width: 280px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
