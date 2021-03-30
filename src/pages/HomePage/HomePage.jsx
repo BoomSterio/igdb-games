@@ -31,7 +31,7 @@ const HomePage = () => {
   const onPageSelect = (page) => {
     dispatch(homeActions.setPageNumber(page))
   }
-  
+
   if(isFetching) return <Preloader/>
   if(games?.length === 0) return <NoResults requestText={params.query}/>
 
