@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const instance = axios.create({
-  baseURL: 'https://cors-anywhere.herokuapp.com/https://api.igdb.com/v4',
+  baseURL: 'https://thingproxy.freeboard.io/fetch/https://api.igdb.com/v4',     //https://cors-anywhere.herokuapp.com/
   headers: {
     'Content-Type': 'application/json',
     'Client-ID': 'mr3cuy9uzxoxzas1jylefe3egdgtc6',

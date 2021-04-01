@@ -8,12 +8,20 @@ const GameCard = ({ id, name }) => {
   const [imageId, setImageId] = useState(null)
 
   useEffect(() => {
+    let isMounted = true
+
     async function fetchCover() {
       let data = await gamesAPI.getGameCover(id)
-      setImageId(data && data?.image_id)
+
+      if(data && isMounted)
+        setImageId(data?.image_id)
     }
 
     fetchCover()
+
+    return () => {
+      isMounted = false
+    }
   }, [id])
 
   return (

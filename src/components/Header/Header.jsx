@@ -22,7 +22,8 @@ const Header = () => {
       history.push(`/search/${query}`)
       dispatch(requestGames(query, 50))
 
-      setQuery('')
+      /*setQuery('')*/  //Decided not to clean search field
+                        //so that the user can specify the request
     }
   }
 

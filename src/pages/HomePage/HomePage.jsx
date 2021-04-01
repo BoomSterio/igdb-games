@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import s from './HomePage.module.css'
 import GameCard from '../../components/GameCard/GameCard'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
@@ -8,8 +8,9 @@ import { getCurrentPage, getGames, getGamesCount, getIsFetching } from '../../re
 import { homeActions } from '../../redux/actions/home-actions'
 import { useParams } from 'react-router'
 import Pagination from '../../components/Pagination/Pagination'
-import NoResults from '../../components/NoResults/NoResults'
 import Preloader from '../../components/Preloader/Preloader'
+
+const NoResults = React.lazy(() => import('../../components/NoResults/NoResults'));
 
 const HomePage = () => {
   const isFetching = useSelector(getIsFetching)
@@ -33,10 +34,15 @@ const HomePage = () => {
   }
 
   if(isFetching) return <Preloader/>
-  if(games?.length === 0) return <NoResults requestText={params.query}/>
+  if(games?.length === 0) return <Suspense fallback={<Preloader/>}>
+    <NoResults requestText={params.query}/>
+  </Suspense>
 
   return (
     <div className={s.home}>
+      {params.query &&
+        <h2>Search results "{params.query}"</h2>
+      }
       {totalGamesCount > 10 && (
         <Pagination currentPage={currentPage} total={totalGamesCount} pageSize={10} handleSelect={onPageSelect}/>
       )}

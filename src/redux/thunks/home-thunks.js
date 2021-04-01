@@ -1,7 +1,7 @@
 import { gamesAPI } from '../../api/api'
 import { homeActions } from '../actions/home-actions'
 
-export const requestGames = (query = null, maxResults = 10) => async dispatch => {
+export const requestGames = (query, maxResults = 10) => async dispatch => {
   dispatch(homeActions.setIsFetching(true))
 
   let data
