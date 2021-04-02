@@ -3,7 +3,6 @@ import { gameActions } from '../actions/game-actions'
 
 export const requestGameInfo = id => async dispatch => {
   dispatch(gameActions.clearInfo())
-  dispatch(gameActions.setIsFetching(true))
 
   let cover = await gamesAPI.getGameCover(id)
   dispatch(gameActions.setCover(cover))
@@ -13,6 +12,4 @@ export const requestGameInfo = id => async dispatch => {
   dispatch(gameActions.setCompanies(companies))
   let screenshots = await gamesAPI.getScreenshots(id)
   dispatch(gameActions.setScreenshots(screenshots))
-
-  dispatch(gameActions.setIsFetching(false))
 }

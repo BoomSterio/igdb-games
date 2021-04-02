@@ -54,6 +54,7 @@
     "semi": false,
     "singleQuote": true,
     "arrowParens": "avoid",
-    "proseWrap": "never"
+    "proseWrap": "never",
+    "printWidth": 150
   }
 }

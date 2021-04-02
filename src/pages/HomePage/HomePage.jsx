@@ -1,10 +1,10 @@
-import React, { Suspense, useEffect } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import s from './HomePage.module.css'
 import GameCard from '../../components/GameCard/GameCard'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { useDispatch, useSelector } from 'react-redux'
 import { requestGames } from '../../redux/thunks/home-thunks'
-import { getCurrentPage, getGames, getGamesCount, getIsFetching } from '../../redux/selectors/home-selectors'
+import { getCurrentPage, getGames, getGamesCount } from '../../redux/selectors/home-selectors'
 import { homeActions } from '../../redux/actions/home-actions'
 import { useParams } from 'react-router'
 import Pagination from '../../components/Pagination/Pagination'
@@ -13,20 +13,27 @@ import Preloader from '../../components/Preloader/Preloader'
 const NoResults = React.lazy(() => import('../../components/NoResults/NoResults'));
 
 const HomePage = () => {
-  const isFetching = useSelector(getIsFetching)
+  const [isFetching, setIsFetching] = useState(false)
   const currentPage = useSelector(getCurrentPage)
-  const games = useSelector(getGames(currentPage))
+  const games = useSelector(getGames())
   const totalGamesCount = useSelector(getGamesCount)
 
   const dispatch = useDispatch()
   const params = useParams()
 
   useEffect(() => {
+    setIsFetching(true)
+    let promise
+
     if (params?.query) {
-      dispatch(requestGames(params.query, 50))
+      promise = dispatch(requestGames(params.query, 50))
     } else {
-      dispatch(requestGames())
+      promise = dispatch(requestGames())
     }
+
+    promise.then(() => {
+      setIsFetching(false)
+    })
   }, [params])
 
   const onPageSelect = (page) => {

@@ -7,5 +7,4 @@ export const gameActions = {
     screenshots,
   }),
   clearInfo: () => ({ type: 'gamePage/CLEAR_INFO' }),
-  setIsFetching: (isFetching) => ({ type: 'gamePage/SET_IS_FETCHING', isFetching }),
 }

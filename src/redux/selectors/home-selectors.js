@@ -10,7 +10,3 @@ export const getGames = () => state => {
   const page = getCurrentPage(state)
   return state.homePage.games?.slice((page - 1) * 10, (page - 1) * 10 + 10)
 }
-
-export const getIsFetching = state => {
-  return state.homePage.isFetching
-}

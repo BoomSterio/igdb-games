@@ -2,8 +2,6 @@ import { gamesAPI } from '../../api/api'
 import { homeActions } from '../actions/home-actions'
 
 export const requestGames = (query, maxResults = 10) => async dispatch => {
-  dispatch(homeActions.setIsFetching(true))
-
   let data
   if (!query) {
     data = await gamesAPI.getPopularGames(maxResults)
@@ -12,5 +10,4 @@ export const requestGames = (query, maxResults = 10) => async dispatch => {
   }
 
   dispatch(homeActions.setGames(data))
-  dispatch(homeActions.setIsFetching(false))
 }

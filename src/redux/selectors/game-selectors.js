@@ -13,7 +13,3 @@ export const getCompanies = state => {
 export const getScreenshots = state => {
   return state.gamePage.screenshots
 }
-
-export const getIsFetching = state => {
-  return state.gamePage.isFetching
-}

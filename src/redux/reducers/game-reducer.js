@@ -3,7 +3,6 @@ let initialState = {
   cover: null,
   companies: null,
   screenshots: null,
-  isFetching: false
 }
 
 const gameReducer = (state = initialState, action) => {
@@ -39,12 +38,6 @@ const gameReducer = (state = initialState, action) => {
         cover: null,
         companies: null,
         screenshots: null,
-      }
-    }
-    case 'gamePage/SET_IS_FETCHING': {
-      return {
-        ...state,
-        isFetching: action.isFetching
       }
     }
     default:

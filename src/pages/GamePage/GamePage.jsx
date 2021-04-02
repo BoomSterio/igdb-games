@@ -1,22 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import s from './GamePage.module.css'
 import { useParams } from 'react-router'
 import 'react-circular-progressbar/dist/styles.css'
 import Rating from '../../components/Rating/Rating'
 import { requestGameInfo } from '../../redux/thunks/game-thunks'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getCompanies,
-  getCover,
-  getInfo, getIsFetching,
-  getScreenshots
-} from '../../redux/selectors/game-selectors'
+import { getCompanies, getCover, getInfo, getScreenshots } from '../../redux/selectors/game-selectors'
 import Screenshot from '../../components/Screenshot/Screenshot'
 import gameImg from '../../assets/images/gameImg.png'
 import Preloader from '../../components/Preloader/Preloader'
 
 const GamePage = () => {
-  const isFetching = useSelector(getIsFetching)
+  const [isFetching, setIsFetching] = useState(false)
   const info = useSelector(getInfo)
   const cover = useSelector(getCover)
   const companies = useSelector(getCompanies)
@@ -27,12 +22,17 @@ const GamePage = () => {
   const { id } = params
 
   useEffect(() => {
+    setIsFetching(true)
+
     dispatch(requestGameInfo(id))
+      .then(() => {
+        setIsFetching(false)
+      })
   }, [])
 
-  const devs = companies?.filter(c => c.developer)
-  const publishers = companies?.filter(c => c.publisher)
-  const porters = companies?.filter(c => c.porting)
+  const devs = useMemo(() => companies?.filter(c => c.developer), [companies])
+  const publishers = useMemo(() => companies?.filter(c => c.publisher), [companies])
+  const porters = useMemo(() => companies?.filter(c => c.porting), [companies])
 
   if(isFetching) return <Preloader/>
 
